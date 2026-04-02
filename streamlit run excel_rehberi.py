@@ -11,8 +11,8 @@ def get_visitor_count():
     # Dosya yoksa oluştur ve 1240'tan başlat
     if not os.path.exists(file_name):
         with open(file_name, "w") as f:
-            f.write("1240")
-        return 1240
+            f.write("0")
+        return 0
     
     # Dosyayı oku, sayıyı artır ve geri yaz
     with open(file_name, "r") as f:
