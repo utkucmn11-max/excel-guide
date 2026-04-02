@@ -1,91 +1,148 @@
 import streamlit as st
 import pandas as pd
 
-# Sayfa Genişliği ve Başlığı
-st.set_page_config(page_title="Excel Pro Rehberi", page_icon="📈", layout="wide")
+# Sayfa Genişliği ve Tarayıcı Sekmesi Ayarları
+st.set_page_config(
+    page_title="Excel Master Rehberi",
+    page_icon="📗",
+    layout="wide"
+)
 
-# --- CUSTOM CSS (Tasarımı Profesyonelleştiren Bölüm) ---
+# --- GELİŞMİŞ CSS (Yeşil & Beyaz Kurumsal Tema) ---
 st.markdown("""
     <style>
-    .main { background-color: #f0f2f6; }
-    .stSidebar { background-color: #ffffff !important; border-right: 1px solid #e0e0e0; }
-    .excel-card {
-        background-color: white;
-        padding: 20px;
-        border-radius: 10px;
-        border-left: 8px solid #217346;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        margin-bottom: 20px;
+    /* Ana Arka Plan */
+    .stApp {
+        background-color: #fcfcfc;
     }
-    .header-text { color: #217346; font-family: 'Segoe UI', sans-serif; font-weight: bold; }
+    
+    /* Yan Menü (Sidebar) Stil */
+    [data-testid="stSidebar"] {
+        background-color: #ffffff !important;
+        border-right: 2px solid #217346;
+    }
+    
+    /* Kart Tasarımları */
+    .info-card {
+        background-color: #ffffff;
+        padding: 25px;
+        border-radius: 12px;
+        border-top: 5px solid #217346;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        margin-bottom: 20px;
+        color: #333;
+    }
+    
+    /* Başlık Renkleri */
+    h1, h2, h3 {
+        color: #217346 !important;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    /* Buton ve Linklerin Üzerine Gelince Değişen Renkler */
+    .stRadio > div {
+        gap: 10px;
+    }
+    
+    /* Metrik Alanları */
+    div[data-testid="stMetricValue"] {
+        color: #217346 !important;
+    }
     </style>
     """, unsafe_allow_html=True)
 
-# --- SIDEBAR (Menü) ---
+# --- SIDEBAR (NAVİGASYON) ---
 with st.sidebar:
-    st.image("https://upload.wikimedia.org/wikipedia/commons/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg", width=60)
-    st.markdown("<h2 class='header-text'>Excel Akademi</h2>", unsafe_allow_html=True)
-    menu = st.radio("Eğitim İçeriği", 
-                    ["💎 Ana Panel", "⌨️ Kısayol Sözlüğü", "🧪 Formül Kütüphanesi", "📊 Veri Görselleştirme", "🛠️ Gelişmiş Ayarlar"])
+    st.image("https://upload.wikimedia.org/wikipedia/commons/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg", width=120)
+    st.markdown("## **Excel Eğitim Portalı**")
+    st.write("Profesyonel Gelişim Platformu")
     st.markdown("---")
-    st.caption("Versiyon 2.0 | Utku Tarafından Geliştirildi")
-
-# --- İÇERİK ---
-if menu == "💎 Ana Panel":
-    st.markdown("<h1 class='header-text'>Hoş Geldin, Excel'de Uzmanlaşmaya Başla</h1>", unsafe_allow_html=True)
     
-    # Üst Bilgi Kartları
+    choice = st.radio(
+        "Kategoriler",
+        ["🏠 Dashboard", "⌨️ Kısayol Ansiklopedisi", "🧪 Formüller & Mantık", "📉 Veri Analizi", "⚙️ Ayarlar & Püf Noktaları"]
+    )
+    
+    st.markdown("---")
+    st.success("**Geliştirici:** Utku\n\n*Hızlı, Pratik, Profesyonel*")
+
+# --- SAYFA İÇERİKLERİ ---
+
+# 1. DASHBOARD (ANA SAYFA)
+if choice == "🏠 Dashboard":
+    st.markdown("<h1>📊 Excel Master Dashboard</h1>", unsafe_allow_html=True)
+    
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.markdown('<div class="excel-card"><h3>450+</h3><p>Fonksiyon Desteği</p></div>', unsafe_allow_html=True)
+        st.metric(label="Öğrenilebilir Fonksiyon", value="480+", delta="Haftalık Güncel")
     with col2:
-        st.markdown('<div class="excel-card"><h3>100+</h3><p>Pratik Kısayol</p></div>', unsafe_allow_html=True)
+        st.metric(label="Kısayol Kombinasyonu", value="120", delta="Hız %40 Artar")
     with col3:
-        st.markdown('<div class="excel-card"><h3>Sınırsız</h3><p>Veri Analiz Gücü</p></div>', unsafe_allow_html=True)
+        st.metric(label="Zorluk Seviyesi", value="Başlangıç-İleri", delta="Hepsi İçin")
 
-    st.subheader("📌 Nereden Başlamalıyım?")
-    st.write("""
-    Excel öğrenmek bir maratondur. Önce temel hücre yapısını, ardından **Tablo Oluşturma (CTRL+T)** mantığını ve en sonunda **Pivot Tabloları** öğrenerek profesyonel hayata adım atabilirsin.
-    """)
+    st.markdown("""
+    <div class="info-card">
+        <h3>🚀 Neden Bu Rehber?</h3>
+        <p>İş hayatında en çok kullanılan araç olan Excel'i, karmaşadan uzak, sadece en önemli ve işe yarar kısımlarıyla öğrenmeniz için bu dijital rehberi hazırladık. 
+        Sol menüden istediğiniz uzmanlık alanını seçerek hemen başlayabilirsiniz.</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.subheader("🔔 Günün İpucu")
+    st.warning("**Hızlı Doldurma (Flash Fill):** Bir sütundaki veriyi (örneğin ad-soyad ayırma) bir kez manuel yapıp **CTRL + E** tuşuna basarsanız, Excel tüm listeyi sizin için otomatik tamamlar.")
 
-elif menu == "⌨️ Kısayol Sözlüğü":
-    st.header("Hızınızı 2 Katına Çıkaracak Tuşlar")
+# 2. KISAYOLLAR
+elif choice == "⌨️ Kısayol Ansiklopedisi":
+    st.markdown("<h1>⌨️ Profesyonel Kısayollar</h1>", unsafe_allow_html=True)
     
-    tab1, tab2 = st.tabs(["Genel Kullanım", "Veri İşleme"])
-    with tab1:
-        ks = {
-            "Kısayol": ["F4", "ALT + =", "CTRL + Shift + L", "CTRL + T", "CTRL + PageDown"],
-            "Ne İşe Yarar?": ["Hücreyi Sabitle / Son İşlemi Tekrarla", "Otomatik Toplam Al", "Hızlı Filtre Ekle", "Veriyi Tabloya Dönüştür", "Sayfalar Arası Geçiş"]
-        }
-        st.table(pd.DataFrame(ks))
-    with tab2:
-        st.info("İpucu: Hücre içinde alt satıra geçmek için **ALT + ENTER** kombinasyonunu kullanın.")
-
-elif menu == "🧪 Formül Kütüphanesi":
-    st.header("Fonksiyonların Gücünü Keşfedin")
+    tabs = st.tabs(["🚀 En Hızlılar", "🔧 Düzenleme", "🖱️ Gezinme"])
     
-    kat = st.selectbox("Kategori Seç", ["Arama & Başvuru", "Mantıksal", "Metin"])
-    
-    if kat == "Arama & Başvuru":
+    with tabs[0]:
         st.markdown("""
-        <div class="excel-card">
-            <h4>XLOOKUP (ÇAPRAZARA)</h4>
-            <p>Düşeyara'nın (VLOOKUP) yerini alan, hem sağa hem sola bakabilen en modern formüldür.</p>
-            <code>=ÇAPRAZARA(aranan_değer; arama_dizisi; döndürülen_dizi)</code>
+        <div class="info-card">
+            <b>ALT + =</b> : Otomatik Toplam (Hücreleri saniyeler içinde toplar)<br><br>
+            <b>F4</b> : Son yapılan işlemi tekrarlar veya hücreyi sabitler ($)<br><br>
+            <b>CTRL + SHIFT + L</b> : Filtreleri anında açar veya kapatır.
         </div>
         """, unsafe_allow_html=True)
     
-    elif kat == "Mantıksal":
-        st.code("=EĞER(koşul; doğruysa_ne_yazsın; yanlışsa_ne_yazsın)")
+    with tabs[1]:
+        st.table(pd.DataFrame({
+            "Kısayol": ["CTRL + T", "CTRL + ;", "ALT + Enter", "CTRL + D"],
+            "Açıklama": ["Tablo Oluştur", "Güncel Tarihi Ekle", "Hücre İçi Alt Satır", "Üstteki Hücreyi Aşağı Kopyala"]
+        }))
 
-elif menu == "📊 Veri Görselleştirme":
-    st.header("Veriyi Hikayeleştirin")
-    st.write("Excel'de etkileyici grafikler oluşturmak için önce verinizi temizlemelisiniz.")
-    st.image("https://images.squarespace-cdn.com/content/v1/553697e1e4b096538b3684a0/1502462310183-Y5L3T753G5D8N5M6W0V8/Excel+Charts.png", caption="Örnek Profesyonel Grafik Yapısı")
+# 3. FORMÜLLER
+elif choice == "🧪 Formüller & Mantık":
+    st.markdown("<h1>🧪 Formüller ve Fonksiyonlar</h1>", unsafe_allow_html=True)
+    
+    st.markdown("""
+    <div class="info-card">
+        <h3>📌 DÜŞEYARA (VLOOKUP)</h3>
+        <p>En çok kullanılan formüldür. Bir değeri arayıp karşılığını getirir.</p>
+        <code>=DÜŞEYARA(aranan_değer; tablo_dizisi; sütun_indis_sayısı; [aralık_bak])</code>
+    </div>
+    <div class="info-card">
+        <h3>📌 ÇAPRAZARA (XLOOKUP)</h3>
+        <p>Düşeyara'nın hatasız ve daha gelişmiş versiyonudur (Excel 365).</p>
+        <code>=ÇAPRAZARA(aranan_değer; arama_dizisi; döndürülen_dizi)</code>
+    </div>
+    """, unsafe_allow_html=True)
 
-elif menu == "🛠️ Gelişmiş Ayarlar":
-    st.header("Excel Ayarları ve Özellikler")
-    with st.expander("Geliştirici Sekmesini Açmak"):
-        st.write("Dosya > Seçenekler > Şeridi Özelleştir > Geliştirici (Onay kutusunu işaretleyin). Bu sayede Makro ve VBA kullanabilirsiniz.")
-    with st.expander("Hızlı Erişimi Özelleştir"):
-        st.write("En üstteki hızlı erişim çubuğuna 'Geri Al', 'Kaydet' yanına 'Değer Olarak Yapıştır'ı eklemek çok zaman kazandırır.")
+# 4. VERİ ANALİZİ
+elif choice == "📉 Veri Analizi":
+    st.markdown("<h1>📉 Veri Analizi ve Görselleştirme</h1>", unsafe_allow_html=True)
+    
+    col_a, col_b = st.columns(2)
+    with col_a:
+        st.subheader("Pivot Tablolar")
+        st.write("Verileri saniyeler içinde özetlemek, raporlamak ve karşılaştırmak için Ekle > PivotTable yolunu kullanın.")
+    with col_b:
+        st.subheader("Dilimleyiciler (Slicers)")
+        st.write("Pivot tablolarınızı ve grafiklerinizi tek tıkla filtrelemek için interaktif butonlar ekleyin.")
+
+# 5. AYARLAR
+elif choice == "⚙️ Ayarlar & Püf Noktaları":
+    st.markdown("<h1>⚙️ Excel'i Özelleştirin</h1>", unsafe_allow_html=True)
+    with st.expander("Geliştirici Sekmesini Aktif Etme"):
+        st.write("Dosya > Seçenekler > Şeridi Özelleştir kısmından 'Geliştirici' kutusunu işaretleyin. Makrolar dünyasına giriş yapın!")
