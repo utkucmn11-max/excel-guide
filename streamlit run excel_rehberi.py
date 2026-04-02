@@ -108,7 +108,7 @@ with t1:
     c1, c2, c3 = st.columns(3)
     c1.metric("Kayıtlı Veri", "150+", "Kısayol & Kod")
     c2.metric("Öğrenme Hızı", "3X", "Artış")
-    c3.metric("Geliştirici", "Utku", "v7.0")
+    c3.metric("Geliştirici", "Utku Çimen", "v7.0")
     
     st.markdown("""
     <div class="dark-card">
