@@ -13,7 +13,7 @@ st.markdown("""
     <style>
     /* Ana Arka Plan */
     .stApp {
-        background-color: #fcfcfa;
+        background-color: #000000;
     }
     
     /* Yan Menü (Sidebar) Stil */
