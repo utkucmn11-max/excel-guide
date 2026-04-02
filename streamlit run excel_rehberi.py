@@ -13,18 +13,18 @@ st.markdown("""
     <style>
     /* Ana Arka Plan */
     .stApp {
-        background-color: #fcfcfc;
+        background-color: #fcfcfa;
     }
     
     /* Yan Menü (Sidebar) Stil */
     [data-testid="stSidebar"] {
-        background-color: #ffffff !important;
+        background-color: #fffffa !important;
         border-right: 2px solid #217346;
     }
     
     /* Kart Tasarımları */
     .info-card {
-        background-color: #ffffff;
+        background-color: #fffffa;
         padding: 25px;
         border-radius: 12px;
         border-top: 5px solid #217346;
