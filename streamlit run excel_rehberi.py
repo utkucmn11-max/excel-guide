@@ -100,7 +100,6 @@ with col1:
     t = texts[lang_choice]
 
 # --- ÜST BÖLÜM (LOGO & BAŞLIK) ---
-st.image("https://upload.wikimedia.org/wikipedia/commons/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg", width=80)
 st.markdown(f"<h1>{t['title']}</h1>", unsafe_allow_html=True)
 st.markdown(f"<p style='text-align: center; color: #8B949E;'>{t['subtitle']}</p>", unsafe_allow_html=True)
 
