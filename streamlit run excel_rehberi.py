@@ -1,10 +1,10 @@
 import streamlit as st
 import pandas as pd
 
-# Sayfa Yapılandırması - Tam Genişlik ve Orta Odak
-st.set_page_config(page_title="Excel Pro Rehberi | Utku", page_icon="📗", layout="wide")
+# Sayfa Yapılandırması
+st.set_page_config(page_title="Excel Master Pro | Centered", page_icon="📗", layout="wide")
 
-# --- KUSURSUZ CSS (Karanlık Mod & Orta Hizalama) ---
+# --- GELİŞMİŞ CSS (Aktif Başlık Vurgusu & Tam Simetri) ---
 st.markdown("""
     <style>
     /* Ana Arka Plan */
@@ -12,19 +12,24 @@ st.markdown("""
     
     /* İçeriği Merkeze Hapsetme */
     .block-container {
-        max-width: 950px;
+        max-width: 1000px;
         margin: 0 auto;
         padding-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
-    /* Başlıklar */
-    h1, h2, h3 { 
+    /* Başlıklar ve Metinler */
+    h1, h2, h3, h4 { 
         text-align: center !important; 
         color: #2EA043 !important; 
-        font-family: 'Segoe UI', sans-serif;
+        font-family: 'Segoe UI', sans-serif; 
     }
     
-    /* Üst Menü (Sekmeler) Tasarımı */
+    .stMarkdown p { color: #8B949E !important; text-align: center; }
+
+    /* Üst Menü Sekme Tasarımı */
     .stTabs [data-baseweb="tab-list"] {
         display: flex;
         justify-content: center;
@@ -33,111 +38,132 @@ st.markdown("""
         padding: 10px;
         border-radius: 15px;
         border: 1px solid #30363D;
+        margin-bottom: 30px;
     }
     
     .stTabs [data-baseweb="tab"] {
         color: #8B949E;
         font-weight: bold;
-        border-radius: 8px;
         padding: 10px 25px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
     }
 
-    /* Seçili (Aktif) Başlık Vurgusu */
+    /* SEÇİLİ BAŞLIK VURGUSU */
     .stTabs [aria-selected="true"] {
         background-color: #2EA043 !important;
         color: white !important;
-        box-shadow: 0 4px 15px rgba(46, 160, 67, 0.3);
+        box-shadow: 0 4px 15px rgba(46, 160, 67, 0.4);
+        transform: scale(1.05);
     }
 
-    /* Profesyonel Kartlar */
-    .pro-card {
+    /* Profesyonel Kart Tasarımları */
+    .dark-card {
         background-color: #1C2128;
-        padding: 25px;
-        border-radius: 12px;
-        border-left: 5px solid #2EA043;
-        border-right: 1px solid #30363D;
-        border-bottom: 1px solid #30363D;
-        margin-bottom: 20px;
+        padding: 30px;
+        border-radius: 15px;
+        border: 1px solid #30363D;
+        border-top: 4px solid #2EA043;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        margin-bottom: 25px;
+        width: 100%;
         text-align: center;
     }
 
     /* Metrikler */
     [data-testid="stMetric"] {
         background-color: #161B22;
+        padding: 20px;
+        border-radius: 15px;
         border: 1px solid #30363D;
-        border-radius: 12px;
         text-align: center;
-        padding: 15px;
     }
 
-    code { color: #FF7B72 !important; background-color: #0D1117 !important; padding: 4px; border-radius: 5px; }
+    /* Tabloyu Ortala */
+    .stTable {
+        margin: 0 auto;
+        width: 100% !important;
+    }
+
+    code { color: #FF7B72 !important; background-color: #0D1117 !important; border-radius: 5px; padding: 3px 8px; }
     </style>
     """, unsafe_allow_html=True)
 
-# --- ÜST LOGO VE BAŞLIK ---
-col_logo, col_empty = st.columns([1, 10]) # Logo için hizalama
-with col_logo:
-    st.image("https://upload.wikimedia.org/wikipedia/commons/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg", width=70)
+# --- ÜST BÖLÜM (LOGO & BAŞLIK) ---
+st.image("https://upload.wikimedia.org/wikipedia/commons/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg", width=90)
+st.markdown("<h1>EXCEL MASTER PROFESYONEL PORTALI</h1>", unsafe_allow_html=True)
+st.markdown("<p>İleri Seviye Veri Analizi ve Kısayol Eğitim Platformu</p>", unsafe_allow_html=True)
 
-st.markdown("<h1>EXCEL MASTER PORTALI</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #8B949E;'>Profesyonel Veri Yönetimi ve Kısayol Akademisi</p>", unsafe_allow_html=True)
-
-# --- ANA SEKMELER ---
+# --- ANA NAVİGASYON (GELİŞMİŞ SEKMELER) ---
 t1, t2, t3, t4, t5 = st.tabs([
     "🌌 Dashboard", 
-    "⌨️ Ninja Tuşları", 
-    "🧪 Formül Analizi", 
-    "🧹 Veri Hijyeni", 
+    "⌨️ Kısayollar", 
+    "🧪 Formüller", 
+    "🧹 Veri Temizleme", 
     "📊 Raporlama"
 ])
 
 # --- 1. DASHBOARD ---
 with t1:
     st.markdown("<br>", unsafe_allow_html=True)
-    m1, m2, m3 = st.columns(3)
-    m1.metric("Kayıtlı Veri", "150+", "Kısayol & İpucu")
-    m2.metric("Verimlilik", "%95", "Optimize")
-    m3.metric("Geliştirici", "Utku", "v6.0 Pro")
+    c1, c2, c3 = st.columns(3)
+    c1.metric("Kısayol Sayısı", "120+", "Full Paket")
+    c2.metric("Verimlilik Artışı", "%95", "Maksimum")
+    c3.metric("Geliştirici", "Utku", "v6.0 Pro")
     
     st.markdown("""
-    <div class="pro-card">
-        <h3>🚀 Uzmanlığa İlk Adım</h3>
-        <p>Excel'de ustalık, klavye hakimiyeti ile başlar. Bu portalda her şey merkeze odaklı ve 
-        dikkat dağıtıcı unsurlardan temizlenmiştir. Üstteki sekmeleri kullanarak eğitimlere başlayabilirsin.</p>
+    <div class="dark-card">
+        <h3>🚀 Neden Bu Platform?</h3>
+        <p>Excel'de fare kullanmayı bıraktığınızda, sadece hızlanmazsınız; veriye olan bakış açınız değişir. 
+        Bu centered (ortalanmış) arayüz, odağınızı sadece bilgiye yöneltmek için tasarlandı. 
+        Her sekmede profesyonel iş hayatınızda kullanacağınız gerçek çözümler yer alıyor.</p>
     </div>
     """, unsafe_allow_html=True)
 
 # --- 2. KISAYOLLAR ---
 with t2:
     st.markdown("<br>", unsafe_allow_html=True)
-    st.subheader("⌨️ En Çok Kullanılan Ninja Kısayolları")
+    sub1, sub2, sub3 = st.tabs(["🚀 Temel & Navigasyon", "🎨 Biçim", "🧮 Giriş & Yönetim"])
     
-    ks_data = {
-        "İşlem": ["Kaydet", "Geri Al", "Yinele", "Kopyala", "Yapıştır", "Kes", "Tümünü Seç", "Bul / Değiştir"],
-        "Kısayol (TR/EN)": ["Ctrl + S", "Ctrl + Z", "Ctrl + Y", "Ctrl + C", "Ctrl + V", "Ctrl + X", "Ctrl + A", "Ctrl + F / H"]
-    }
-    st.table(pd.DataFrame(ks_data))
-    
-    st.markdown("""
-    <div class="pro-card">
-        <b>💡 Kritik İpucu:</b> Hücreyi kilitlemek (Sabitlemek) için <b>F4</b> tuşunu kullanmayı unutma!
-    </div>
-    """, unsafe_allow_html=True)
+    with sub1:
+        st.subheader("Navigasyon Ninja Tuşları")
+        st.table(pd.DataFrame({
+            "İşlem": ["Kaydet", "Geri Al", "Kopyala/Yapıştır", "Tümünü Seç", "Veri Sonuna Git", "A1'e Dön", "Satır/Sütun Seç"],
+            "Kısayol": ["Ctrl + S", "Ctrl + Z", "Ctrl + C / V", "Ctrl + A", "Ctrl + Ok Tuşları", "Ctrl + Home", "Shift/Ctrl + Boşluk"]
+        }))
+
+    with sub2:
+        st.subheader("Hücre ve Veri Biçimlendirme")
+        st.table(pd.DataFrame({
+            "İşlem": ["Biçim Menüsü", "Kalın/İtalik/Altı Çizili", "Para Birimi", "Yüzde Biçimi", "Tarih Biçimi"],
+            "Kısayol": ["Ctrl + 1", "Ctrl + B / I / U", "Ctrl + Shift + $", "Ctrl + Shift + %", "Ctrl + Shift + #"]
+        }))
+
+    with sub3:
+        st.markdown("""
+        <div class="dark-card">
+            <h4>Hızlı Veri Yönetimi</h4>
+            • <b>Alt + = :</b> Otomatik TOPLA fonksiyonu ekler.<br>
+            • <b>Ctrl + ; / : :</b> Güncel Tarih ve Saat ekler.<br>
+            • <b>Ctrl + D / R :</b> Üsttekini/Soldakini kopyalar.<br>
+            • <b>Ctrl + Shift + + / - :</b> Satır/Sütun Ekle veya Sil.<br>
+            • <b>Ctrl + 9 / 0 :</b> Satır veya Sütun Gizle.
+        </div>
+        """, unsafe_allow_html=True)
 
 # --- 3. FORMÜLLER ---
 with t3:
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("""
-    <div class="pro-card">
+    <div class="dark-card">
         <h3>🔍 XLOOKUP (ÇAPRAZARA)</h3>
-        <p>Eski nesil Düşeyara'nın (VLOOKUP) tahtını yıkan en güçlü fonksiyon.</p>
+        <p>Yeni nesil arama fonksiyonu. Sütun saymaya veda edin!</p>
         <code>=ÇAPRAZARA(aranan_değer; arama_dizisi; döndürülen_dizi)</code>
     </div>
-    <div class="pro-card">
-        <h3>🔒 Hücre Sabitleme ($) Mantığı</h3>
-        • <b>$A$1 :</b> Tam Kilit <br>
-        • <b>A$1 :</b> Satır Kilit <br>
-        • <b>$A1 :</b> Sütun Kilit
+    <div class="dark-card">
+        <h3>🔒 Sabitleme ($) Mantığı</h3>
+        <p>Hücreleri kilitlemek için <b>F4</b> tuşunu kullanın.</p>
+        <p>$A$1 (Tam Sabit) | A$1 (Satır Sabit) | $A1 (Sütun Sabit)</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -145,11 +171,11 @@ with t3:
 with t4:
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("""
-    <div class="pro-card">
-        <h3>🧹 Veri Temizleme Araçları</h3>
-        • <b>=KIRP(A1) :</b> Gereksiz boşlukları temizler.<br>
-        • <b>=YAZIM.DÜZENİ(A1) :</b> Baş harfleri büyütür.<br>
-        • <b>=EĞERHATA(Formül; 0) :</b> Hatalı sonuçları gizler.
+    <div class="dark-card">
+        <h4>🧹 Temizleme Formülleri</h4>
+        • <b>=KIRP(A1) :</b> Boşlukları yok eder.<br>
+        • <b>=YAZIM.DÜZENİ(A1) :</b> Metni standartlaştırır.<br>
+        • <b>=EĞERHATA(Formül; 0) :</b> Hataları temiz gösterir.
     </div>
     """, unsafe_allow_html=True)
 
@@ -157,10 +183,10 @@ with t4:
 with t5:
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("""
-    <div class="pro-card">
-        <h3>📊 Profesyonel Dashboard Kuralları</h3>
-        1. Daima <b>CTRL + T</b> ile tablo formatını kullan.<br>
-        2. Raporlarına interaktif <b>Dilimleyiciler (Slicers)</b> ekle.<br>
-        3. Karmaşık grafikler yerine sade ve anlaşılır görseller seç.
+    <div class="dark-card">
+        <h4>📊 Dashboard Tasarım İlkeleri</h4>
+        <p>1. Daima <b>Tablo (CTRL + T)</b> kullanın.</p>
+        <p>2. Pivot tablolarınıza <b>Dilimleyiciler</b> ekleyin.</p>
+        <p>3. Karmaşayı azaltın, veriyi sadeleştirin.</p>
     </div>
     """, unsafe_allow_html=True)
