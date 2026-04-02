@@ -12,7 +12,7 @@ st.markdown("""
     
     /* İçeriği Merkeze Sabitleme */
     .block-container {
-        max-width: 1000px;
+        max-width: 950px;
         margin: 0 auto;
         padding-top: 2rem;
         display: flex;
@@ -66,7 +66,6 @@ st.markdown("""
         box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         margin-bottom: 20px;
         width: 100%;
-        text-align: left; /* Kod içerikleri soldan başlar */
     }
 
     /* Metrik Kutuları */
@@ -76,6 +75,12 @@ st.markdown("""
         border-radius: 12px;
         border: 1px solid #30363D;
         text-align: center;
+    }
+
+    /* Tablo Düzeni */
+    .stTable {
+        margin: 0 auto;
+        width: 100% !important;
     }
 
     code { color: #FF7B72 !important; background-color: #0D1117 !important; border-radius: 5px; padding: 3px 8px; }
@@ -102,13 +107,13 @@ with t1:
     c1, c2, c3 = st.columns(3)
     c1.metric("Otomasyon", "VBA & Script", "Aktif")
     c2.metric("Verimlilik", "%100", "Maksimum")
-    c3.metric("Geliştirici", "Utku", "v6.5")
+    c3.metric("Geliştirici", "Utku", "v6.8")
     
     st.markdown("""
     <div class="dark-card" style="text-align: center;">
-        <h3>🚀 Profesyonel Gelişim</h3>
-        <p>Excel'de sadece formüllerle değil, kodlarla da hükmedin. Bu platformda klasik kısayolların yanı sıra 
-        VBA ve Office Scripts gibi otomasyon dillerini de bulacaksınız.</p>
+        <h3>🚀 Hoş Geldin Utku</h3>
+        <p>Excel'de ustalığa giden yol bu portalda birleşiyor. Hem klavye hızını artıracak 
+        kısayolları hem de işlerini otomatiğe bağlayacak kod yapılarını senin için bir araya getirdik.</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -122,18 +127,15 @@ with t2:
     })
     st.table(ks_df)
 
-# --- 3. EXCEL KODLARI (YENİ BÖLÜM) ---
+# --- 3. EXCEL KODLARI ---
 with t3:
     st.markdown("<br>", unsafe_allow_html=True)
     
-    # VBA BÖLÜMÜ
+    # VBA
     st.markdown("<h3>1. VBA (Visual Basic for Applications)</h3>", unsafe_allow_html=True)
-    st.markdown("""
-    <div class="dark-card">
-        <p>VBA, Excel'in klasik Makro dilidir. Masaüstü uygulamasında rutin işleri tek tuşla yapmak için kullanılır.</p>
-        <b>Temel Bir VBA Makrosu:</b>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("<div class='dark-card'><p>Masaüstü Excel'de rutin işleri tek tuşla yapmak için kullanılır.</p></div>", unsafe_allow_html=True)
+    
+    st.markdown("**Temel Bir VBA Makrosu:**")
     st.code("""
 Sub VeriTemizle()
     ' Seçili alandaki verileri siler
@@ -144,7 +146,7 @@ Sub VeriTemizle()
 End Sub
     """, language="vba")
 
-    st.markdown("<b>Hücreye Veri Yazdıran Kod:</b>", unsafe_allow_html=True)
+    st.markdown("**Hücreye Veri Yazdıran Kod:**")
     st.code("""
 Sub MerhabaDünya()
     Range("A1").Value = "Merhaba Utku!"
@@ -153,16 +155,10 @@ Sub MerhabaDünya()
 End Sub
     """, language="vba")
 
-    st.info("💡 VBA Editörüne girmek için: **Alt + F11** > **Insert** > **Module** yolunu izleyin.")
+    st.success("💡 **VBA Editörü:** Excel'de Alt + F11 > Insert > Module yolunu izleyin.")
 
     # OFFICE SCRIPTS
-    st.markdown("<br><h3>2. Office Scripts (Web & Bulut)</h3>", unsafe_allow_html=True)
-    st.markdown("""
-    <div class="dark-card">
-        <p>Excel Web ve 365'te kullanılan, TypeScript tabanlı modern yapıdır.</p>
-        <b>Otomatik Tablo Scripti:</b>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("<br><h3>2. Office Scripts (Web & 365)</h3>", unsafe_allow_html=True)
     st.code("""
 function main(workbook: ExcelScript.Workbook) {
   let sheet = workbook.getActiveWorksheet();
@@ -171,13 +167,12 @@ function main(workbook: ExcelScript.Workbook) {
 }
     """, language="typescript")
 
-    # POWER QUERY & FORMÜLLER
-    st.markdown("<br><h3>3. Power Query (M Dili) & Dinamik Formüller</h3>", unsafe_allow_html=True)
+    # M DILI & FORMULLER
+    st.markdown("<br><h3>3. Power Query & Dinamik Formüller</h3>", unsafe_allow_html=True)
     st.markdown("""
-    <div class="dark-card">
-        <b>M Kodu Örneği:</b><br>
-        <code>= Table.ReplaceValue(Kaynak,"Eski","Yeni",Replacer.ReplaceText,{"Sütun1"})</code>
-        <br><br>
+    <div class='dark-card'>
+        <b>M Kodu (Veri Değiştirme):</b><br>
+        <code>= Table.ReplaceValue(Kaynak,"Eski","Yeni",Replacer.ReplaceText,{"Sütun1"})</code><br><br>
         <b>Dinamik Formüller:</b><br>
         • <b>FİLTRE:</b> <code>=FİLTRE(A2:B10; B2:B10="Tamamlandı")</code><br>
         • <b>SIRALA:</b> <code>=SIRALA(A2:E100; 1; 1)</code>
