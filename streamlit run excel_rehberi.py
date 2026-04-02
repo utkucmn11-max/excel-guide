@@ -4,6 +4,12 @@ import pandas as pd
 # Sayfa Yapılandırması
 st.set_page_config(page_title="Excel Master Pro | Utku Çimen ", page_icon="📗", layout="wide")
 
+# --- ZİYARETÇİ SAYACI MANTIĞI ---
+if 'visitor_count' not in st.session_state:
+    st.session_state['visitor_count'] = 1240  # Başlangıç değeri (Örnek)
+else:
+    st.session_state['visitor_count'] += 1
+
 # --- DİL SÖZLÜĞÜ ---
 texts = {
     "Türkçe": {
@@ -13,6 +19,7 @@ texts = {
         "m1_label": "Kısayol Sayısı", "m1_val": "120+", "m1_delta": "Full Paket",
         "m2_label": "Verimlilik Artışı", "m2_val": "%95", "m2_delta": "Maksimum",
         "m3_label": "Geliştirici", "m3_val": "Utku", "m3_delta": "v6.0 Pro",
+        "m4_label": "Toplam Ziyaretçi",
         "card_h3": "🚀 Neden Bu Platform?",
         "card_p": "Excel'de fare kullanmayı bıraktığınızda, sadece hızlanmazsınız; veriye olan bakış açınız değişir. Bu centered (ortalanmış) arayüz, odağınızı sadece bilgiye yöneltmek için tasarlandı.",
         "shortcut_sub": ["🚀 Temel & Navigasyon", "🎨 Biçim", "🧮 Giriş & Yönetim"],
@@ -33,6 +40,7 @@ texts = {
         "m1_label": "Shortcut Count", "m1_val": "120+", "m1_delta": "Full Pack",
         "m2_label": "Efficiency Increase", "m2_val": "%95", "m2_delta": "Maximum",
         "m3_label": "Developer", "m3_val": "Utku", "m3_delta": "v6.0 Pro",
+        "m4_label": "Total Visitors",
         "card_h3": "🚀 Why This Platform?",
         "card_p": "When you stop using the mouse in Excel, you don't just speed up; your perspective on data changes. This centered interface is designed to focus your attention only on knowledge.",
         "shortcut_sub": ["🚀 Basics & Nav", "🎨 Format", "🧮 Input & Mgmt"],
@@ -48,7 +56,7 @@ texts = {
     }
 }
 
-# --- GELİŞMİŞ CSS (Sağ Alt Sabitleme Eklendi) ---
+# --- GELİŞMİŞ CSS ---
 st.markdown("""
     <style>
     .stApp { background-color: #0E1117; color: #FFFFFF; }
@@ -80,7 +88,6 @@ st.markdown("""
     .stTable { margin: 0 auto; width: 100% !important; }
     code { color: #FF7B72 !important; background-color: #0D1117 !important; border-radius: 5px; padding: 3px 8px; }
     
-    /* SAĞ ALT KÖŞE SABİTLEME (FLOAT BUTTON STİLİ) */
     div.stSelectbox {
         position: fixed;
         bottom: 40px;
@@ -92,13 +99,21 @@ st.markdown("""
         border: 1px solid #2EA043;
         box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     }
-    /* Selectbox etiketini gizle */
     div.stSelectbox label { display: none; }
+    
+    /* Sayaç için özel alt kısım stili */
+    .visitor-footer {
+        margin-top: 50px;
+        padding: 20px;
+        border-top: 1px solid #30363D;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
     </style>
     """, unsafe_allow_html=True)
 
-# --- DİL SEÇİMİ SORGUSU (Kodun başında çalışmalı ama CSS ile sonda görünecek) ---
-# dummy bir sütun içinde tutarak layoutu bozmuyoruz
+# --- DİL SEÇİMİ ---
 lang = st.selectbox("Language", ["Türkçe", "English"], key="lang_selector")
 t = texts[lang]
 
@@ -194,3 +209,9 @@ with t5:
         <p>3. Karmaşayı azaltın, veriyi sadeleştirin.</p>
     </div>
     """, unsafe_allow_html=True)
+
+# --- SAYFA ALTI SAYAÇ (FOOTER) ---
+st.markdown("---")
+col_f1, col_f2, col_f3 = st.columns([1,1,1])
+with col_f2:
+    st.metric(label=t["m4_label"], value=st.session_state['visitor_count'])
