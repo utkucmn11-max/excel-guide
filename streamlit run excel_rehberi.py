@@ -112,7 +112,7 @@ with t1:
     
     st.markdown("""
     <div class="dark-card">
-        <h3>🚀 Hoş Geldin Utku</h3>
+        <h3>🚀 Hoş Geldiniz </h3>
         <p>Excel'de ustalaşmak için fareyi (mouse) kenara bırakmanın vakti geldi. 
         Bu platform, tamamen merkezi bir odakla en kritik bilgileri sana sunmak için tasarlandı. 
         Yeni eklenen <b>Excel Kodları</b> sekmesini incelemeyi unutma!</p>
