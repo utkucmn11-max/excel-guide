@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 # Sayfa Yapılandırması
-st.set_page_config(page_title="Excel Master Pro | Utku", page_icon="📗", layout="wide")
+st.set_page_config(page_title="Excel Master Pro | Utku Çimen ", page_icon="📗", layout="wide")
 
 # --- DİL SÖZLÜĞÜ ---
 texts = {
@@ -103,7 +103,6 @@ lang = st.selectbox("Language", ["Türkçe", "English"], key="lang_selector")
 t = texts[lang]
 
 # --- ÜST BÖLÜM ---
-st.image("https://upload.wikimedia.org/wikipedia/commons/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg", width=90)
 st.markdown(f"<h1>{t['title']}</h1>", unsafe_allow_html=True)
 st.markdown(f"<p>{t['subtitle']}</p>", unsafe_allow_html=True)
 
