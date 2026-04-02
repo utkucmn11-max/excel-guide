@@ -1,14 +1,34 @@
 import streamlit as st
 import pandas as pd
+import os
 
 # Sayfa Yapılandırması
 st.set_page_config(page_title="Excel Master Pro | Utku Çimen ", page_icon="📗", layout="wide")
 
-# --- ZİYARETÇİ SAYACI MANTIĞI ---
-if 'visitor_count' not in st.session_state:
-    st.session_state['visitor_count'] = 1240  # Başlangıç değeri (Örnek)
-else:
-    st.session_state['visitor_count'] += 1
+# --- KALICI SAYAÇ FONKSİYONLARI ---
+def get_visitor_count():
+    file_name = "visitor_count.txt"
+    # Dosya yoksa oluştur ve 1240'tan başlat
+    if not os.path.exists(file_name):
+        with open(file_name, "w") as f:
+            f.write("1240")
+        return 1240
+    
+    # Dosyayı oku, sayıyı artır ve geri yaz
+    with open(file_name, "r") as f:
+        count = int(f.read())
+    
+    # Session state ile her sayfa içi etkileşimde (buton vs) artmasını engelle, 
+    # sadece yeni bir "session" (sekme açılışı) başladığında artır
+    if 'visited' not in st.session_state:
+        count += 1
+        with open(file_name, "w") as f:
+            f.write(str(count))
+        st.session_state['visited'] = True
+        
+    return count
+
+current_visitors = get_visitor_count()
 
 # --- DİL SÖZLÜĞÜ ---
 texts = {
@@ -100,16 +120,6 @@ st.markdown("""
         box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     }
     div.stSelectbox label { display: none; }
-    
-    /* Sayaç için özel alt kısım stili */
-    .visitor-footer {
-        margin-top: 50px;
-        padding: 20px;
-        border-top: 1px solid #30363D;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
     </style>
     """, unsafe_allow_html=True)
 
@@ -210,8 +220,8 @@ with t5:
     </div>
     """, unsafe_allow_html=True)
 
-# --- SAYFA ALTI SAYAÇ (FOOTER) ---
+# --- SAYFA ALTI SAYAÇ ---
 st.markdown("---")
-col_f1, col_f2, col_f3 = st.columns([1,1,1])
-with col_f2:
-    st.metric(label=t["m4_label"], value=st.session_state['visitor_count'])
+cf1, cf2, cf3 = st.columns([1,1,1])
+with cf2:
+    st.metric(label=t["m4_label"], value=current_visitors)
