@@ -18,7 +18,7 @@ st.markdown("""
     
     /* Yan Menü (Sidebar) Stil */
     [data-testid="stSidebar"] {
-        background-color: #fffffa !important;
+        background-color: #000000  !important;
         border-right: 2px solid #217346;
     }
     
