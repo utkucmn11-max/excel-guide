@@ -12,7 +12,7 @@ st.markdown("""
     
     /* İçeriği Merkeze Sabitleme */
     .block-container {
-        max-width: 950px;
+        max-width: 900px;
         margin: 0 auto;
         padding-top: 2rem;
         display: flex;
@@ -48,7 +48,7 @@ st.markdown("""
         transition: all 0.3s ease;
     }
 
-    /* SEÇİLİ BAŞLIK VURGUSU */
+    /* SEÇİLİ BAŞLIK (Aktif Sekme) GÖRÜNÜMÜ */
     .stTabs [aria-selected="true"] {
         background-color: #2EA043 !important;
         color: white !important;
@@ -66,6 +66,7 @@ st.markdown("""
         box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         margin-bottom: 20px;
         width: 100%;
+        text-align: center;
     }
 
     /* Metrik Kutuları */
@@ -87,10 +88,10 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# --- ÜST BÖLÜM ---
-st.image("https://upload.wikimedia.org/wikipedia/commons/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg", width=80)
+# --- LOGO VE ANA BAŞLIK ---
+st.image("https://upload.wikimedia.org/wikipedia/commons/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg", width=90)
 st.markdown("<h1>EXCEL MASTER PROFESYONEL PORTALI</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #8B949E;'>Otomasyon, Kodlama ve İleri Düzey Excel Rehberi</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #8B949E;'>Utku Tarafından Geliştirilen İleri Seviye Eğitim Platformu</p>", unsafe_allow_html=True)
 
 # --- ANA SEKMELER ---
 t1, t2, t3, t4, t5 = st.tabs([
@@ -105,60 +106,66 @@ t1, t2, t3, t4, t5 = st.tabs([
 with t1:
     st.markdown("<br>", unsafe_allow_html=True)
     c1, c2, c3 = st.columns(3)
-    c1.metric("Otomasyon", "VBA & Script", "Aktif")
-    c2.metric("Verimlilik", "%100", "Maksimum")
-    c3.metric("Geliştirici", "Utku", "v6.8")
+    c1.metric("Kayıtlı Veri", "150+", "Kısayol & Kod")
+    c2.metric("Öğrenme Hızı", "3X", "Artış")
+    c3.metric("Geliştirici", "Utku", "v7.0")
     
     st.markdown("""
-    <div class="dark-card" style="text-align: center;">
+    <div class="dark-card">
         <h3>🚀 Hoş Geldin Utku</h3>
-        <p>Excel'de ustalığa giden yol bu portalda birleşiyor. Hem klavye hızını artıracak 
-        kısayolları hem de işlerini otomatiğe bağlayacak kod yapılarını senin için bir araya getirdik.</p>
+        <p>Excel'de ustalaşmak için fareyi (mouse) kenara bırakmanın vakti geldi. 
+        Bu platform, tamamen merkezi bir odakla en kritik bilgileri sana sunmak için tasarlandı. 
+        Yeni eklenen <b>Excel Kodları</b> sekmesini incelemeyi unutma!</p>
     </div>
     """, unsafe_allow_html=True)
 
 # --- 2. KISAYOLLAR ---
 with t2:
     st.markdown("<br>", unsafe_allow_html=True)
-    st.subheader("⌨️ Ninja Kısayol Kütüphanesi")
-    ks_df = pd.DataFrame({
-        "İşlem": ["Kaydet", "Geri Al", "Kopyala/Yapıştır", "Tümünü Seç", "Filtre Aç/Kapat", "Tablo Yap", "A1'e Git", "Veri Sonuna Git"],
-        "Kısayol": ["Ctrl + S", "Ctrl + Z", "Ctrl + C / V", "Ctrl + A", "Ctrl+Shift+L", "Ctrl + T", "Ctrl + Home", "Ctrl + Ok Tuşları"]
-    })
-    st.table(ks_df)
+    sub1, sub2, sub3 = st.tabs(["🔥 Temel İşlemler", "🎨 Biçimlendirme", "🧮 Giriş & Yönetim"])
+    
+    with sub1:
+        st.subheader("Temel İşlemler & Navigasyon")
+        st.table(pd.DataFrame({
+            "İşlem": ["Kaydet", "Geri Al", "Yinele", "Kopyala/Yapıştır", "Tümünü Seç", "Bul/Değiştir", "Veri Sonuna Git", "A1'e Dön"],
+            "Kısayol": ["Ctrl + S", "Ctrl + Z", "Ctrl + Y", "Ctrl + C / V", "Ctrl + A", "Ctrl + F / H", "Ctrl + Ok Tuşları", "Ctrl + Home"]
+        }))
 
-# --- 3. EXCEL KODLARI ---
+    with sub2:
+        st.subheader("Hücre ve Veri Biçimlendirme")
+        st.table(pd.DataFrame({
+            "İşlem": ["Biçimlendirme Menüsü", "Kalın Yaz (Bold)", "İtalik Yaz", "Altı Çizili", "Para Birimi", "Yüzde Biçimi", "Tarih Biçimi"],
+            "Kısayol": ["Ctrl + 1", "Ctrl + B", "Ctrl + I", "Ctrl + U", "Ctrl + Shift + $", "Ctrl + Shift + %", "Ctrl + Shift + #"]
+        }))
+
+    with sub3:
+        st.markdown("""
+        <div class="dark-card">
+            <h4>Hızlı Veri Yönetimi</h4>
+            • <b>Alt + = :</b> Otomatik TOPLA fonksiyonu.<br>
+            • <b>Ctrl + ; / : :</b> Güncel Tarih ve Saat ekleme.<br>
+            • <b>Ctrl + D / R :</b> Üsttekini/Soldakini kopyalar.<br>
+            • <b>Ctrl + Shift + + / - :</b> Satır/Sütun Ekle veya Sil.<br>
+            • <b>Ctrl + 9 / 0 :</b> Satır veya Sütun Gizle.
+        </div>
+        """, unsafe_allow_html=True)
+
+# --- 3. EXCEL KODLARI (YENİ EKLENEN) ---
 with t3:
     st.markdown("<br>", unsafe_allow_html=True)
     
-    # VBA
+    # VBA Bölümü
     st.markdown("<h3>1. VBA (Visual Basic for Applications)</h3>", unsafe_allow_html=True)
-    st.markdown("<div class='dark-card'><p>Masaüstü Excel'de rutin işleri tek tuşla yapmak için kullanılır.</p></div>", unsafe_allow_html=True)
-    
-    st.markdown("**Temel Bir VBA Makrosu:**")
+    st.markdown("<div class='dark-card'><p>VBA, Excel'in klasik Makro dilidir. Masaüstü uygulamasında rutin işleri otomatize eder.</p></div>", unsafe_allow_html=True)
     st.code("""
 Sub VeriTemizle()
-    ' Seçili alandaki verileri siler
     Selection.ClearContents
-    
-    ' Kullanıcıya bilgi verir
     MsgBox "Veriler başarıyla temizlendi!", vbInformation, "Excel Master"
 End Sub
     """, language="vba")
-
-    st.markdown("**Hücreye Veri Yazdıran Kod:**")
-    st.code("""
-Sub MerhabaDünya()
-    Range("A1").Value = "Merhaba Utku!"
-    Range("A1").Font.Bold = True
-    Range("A1").Font.Color = vbGreen
-End Sub
-    """, language="vba")
-
-    st.success("💡 **VBA Editörü:** Excel'de Alt + F11 > Insert > Module yolunu izleyin.")
-
-    # OFFICE SCRIPTS
-    st.markdown("<br><h3>2. Office Scripts (Web & 365)</h3>", unsafe_allow_html=True)
+    
+    # Office Scripts
+    st.markdown("<br><h3>2. Office Scripts (Modern / Web)</h3>", unsafe_allow_html=True)
     st.code("""
 function main(workbook: ExcelScript.Workbook) {
   let sheet = workbook.getActiveWorksheet();
@@ -167,27 +174,26 @@ function main(workbook: ExcelScript.Workbook) {
 }
     """, language="typescript")
 
-    # M DILI & FORMULLER
+    # M Dili & Formüller
     st.markdown("<br><h3>3. Power Query & Dinamik Formüller</h3>", unsafe_allow_html=True)
     st.markdown("""
-    <div class='dark-card'>
-        <b>M Kodu (Veri Değiştirme):</b><br>
-        <code>= Table.ReplaceValue(Kaynak,"Eski","Yeni",Replacer.ReplaceText,{"Sütun1"})</code><br><br>
-        <b>Dinamik Formüller:</b><br>
-        • <b>FİLTRE:</b> <code>=FİLTRE(A2:B10; B2:B10="Tamamlandı")</code><br>
-        • <b>SIRALA:</b> <code>=SIRALA(A2:E100; 1; 1)</code>
+    <div class="dark-card">
+        <b>M Kodu Örneği:</b> <code>= Table.ReplaceValue(Kaynak,"Eski","Yeni",...)</code><br><br>
+        <b>FİLTRE:</b> <code>=FİLTRE(A2:B10; B2:B10="Tamamlandı")</code><br>
+        <b>SIRALA:</b> <code>=SIRALA(A2:E100; 1; 1)</code>
     </div>
     """, unsafe_allow_html=True)
+    st.info("💡 VBA Editörü için: Alt + F11 > Insert > Module")
 
 # --- 4. VERİ TEMİZLEME ---
 with t4:
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("""
-    <div class="dark-card" style="text-align: center;">
-        <h4>🧹 Veri Temizleme Standartları</h4>
-        • <b>=KIRP(A1) :</b> Boşlukları temizler.<br>
-        • <b>=YAZIM.DÜZENİ(A1) :</b> Baş harfleri büyütür.<br>
-        • <b>=EĞERHATA(Formül; 0) :</b> Temiz rapor görünümü sağlar.
+    <div class="dark-card">
+        <h4>🧹 Temizleme Formülleri</h4>
+        • <b>=KIRP(A1) :</b> Boşlukları yok eder.<br>
+        • <b>=YAZIM.DÜZENİ(A1) :</b> Metni standartlaştırır.<br>
+        • <b>=EĞERHATA(Formül; 0) :</b> Hataları temiz gösterir.
     </div>
     """, unsafe_allow_html=True)
 
@@ -195,10 +201,10 @@ with t4:
 with t5:
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("""
-    <div class="dark-card" style="text-align: center;">
+    <div class="dark-card">
         <h4>📊 Dashboard Tasarım İlkeleri</h4>
-        • Her zaman <b>Tablo (CTRL + T)</b> formatını kullanın.<br>
-        • Pivot tablolarınıza <b>Dilimleyiciler (Slicers)</b> ekleyin.<br>
-        • Karmaşık grafiklerden kaçının, sadeliğe odaklanın.
+        • Daima <b>Tablo (CTRL + T)</b> kullanın.<br>
+        • Pivot tablolarınıza <b>Dilimleyiciler</b> ekleyin.<br>
+        • Karmaşayı azaltın, veriyi sadeleştirin.
     </div>
     """, unsafe_allow_html=True)
