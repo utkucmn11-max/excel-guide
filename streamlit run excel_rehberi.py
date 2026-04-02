@@ -1,148 +1,162 @@
 import streamlit as st
 import pandas as pd
 
-# Sayfa Genişliği ve Tarayıcı Sekmesi Ayarları
-st.set_page_config(
-    page_title="Excel Master Rehberi",
-    page_icon="📗",
-    layout="wide"
-)
+# Sayfa Yapılandırması
+st.set_page_config(page_title="Excel Pro Rehberi | Dark Mode", page_icon="📗", layout="wide")
 
-# --- GELİŞMİŞ CSS (Yeşil & Beyaz Kurumsal Tema) ---
+# --- DARK MODE & PROFESSIONAL GREEN CSS ---
 st.markdown("""
     <style>
-    /* Ana Arka Plan */
+    /* Ana Arka Plan ve Metin Renkleri */
     .stApp {
-        background-color: #000000;
+        background-color: #0E1117;
+        color: #FFFFFF;
     }
     
-    /* Yan Menü (Sidebar) Stil */
+    /* Yan Menü (Sidebar) Karanlık Tasarım */
     [data-testid="stSidebar"] {
-        background-color: #000000  !important;
-        border-right: 2px solid #217346;
+        background-color: #161B22 !important;
+        border-right: 1px solid #30363D;
     }
     
-    /* Kart Tasarımları */
-    .info-card {
-        background-color: #fffffa;
+    /* Başlıklar ve Alt Başlıklar */
+    h1, h2, h3, h4 {
+        color: #2EA043 !important; /* Excel Yeşili (Dark Mode Uyumlu) */
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    /* Profesyonel Kart Tasarımları (Dark Card) */
+    .dark-card {
+        background-color: #1C2128;
         padding: 25px;
         border-radius: 12px;
-        border-top: 5px solid #217346;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        margin-bottom: 20px;
-        color: #333;
+        border-left: 5px solid #2EA043;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        margin-bottom: 25px;
+        border: 1px solid #30363D;
+    }
+
+    /* Tablo ve Metrik Düzenlemeleri */
+    .stMetric {
+        background-color: #1C2128;
+        padding: 15px;
+        border-radius: 10px;
+        border: 1px solid #30363D;
     }
     
-    /* Başlık Renkleri */
-    h1, h2, h3 {
-        color: #217346 !important;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Kod Blokları Renk Uyumu */
+    code {
+        color: #FF7B72 !important;
+        background-color: #0D1117 !important;
     }
-    
-    /* Buton ve Linklerin Üzerine Gelince Değişen Renkler */
-    .stRadio > div {
-        gap: 10px;
-    }
-    
-    /* Metrik Alanları */
-    div[data-testid="stMetricValue"] {
-        color: #217346 !important;
+
+    /* Sidebar Yazı Rengi */
+    .css-17l2qt2 {
+        color: #FFFFFF !important;
     }
     </style>
     """, unsafe_allow_html=True)
 
-# --- SIDEBAR (NAVİGASYON) ---
+# --- SIDEBAR NAVİGASYON ---
 with st.sidebar:
-    st.image("https://upload.wikimedia.org/wikipedia/commons/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg", width=120)
-    st.markdown("## **Excel Eğitim Portalı**")
-    st.write("Profesyonel Gelişim Platformu")
+    st.image("https://upload.wikimedia.org/wikipedia/commons/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg", width=100)
+    st.markdown("### **Excel Master v4.0**")
+    st.write("Profesyonel Karanlık Arayüz")
     st.markdown("---")
     
     choice = st.radio(
-        "Kategoriler",
-        ["🏠 Dashboard", "⌨️ Kısayol Ansiklopedisi", "🧪 Formüller & Mantık", "📉 Veri Analizi", "⚙️ Ayarlar & Püf Noktaları"]
+        "Eğitim Modülleri",
+        ["🌌 Dashboard", "⌨️ Ninja Kısayolları", "🧪 İleri Formül Analizi", "🧹 Veri Temizleme", "📊 Raporlama Sanatı"]
     )
     
     st.markdown("---")
-    st.success("**Geliştirici:** Utku\n\n*Hızlı, Pratik, Profesyonel*")
+    st.markdown("👤 **Geliştirici:** Utku")
+    st.caption("Karanlık Mod Aktif ✅")
 
-# --- SAYFA İÇERİKLERİ ---
-
-# 1. DASHBOARD (ANA SAYFA)
-if choice == "🏠 Dashboard":
+# --- 1. DASHBOARD ---
+if choice == "🌌 Dashboard":
     st.markdown("<h1>📊 Excel Master Dashboard</h1>", unsafe_allow_html=True)
     
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        st.metric(label="Öğrenilebilir Fonksiyon", value="480+", delta="Haftalık Güncel")
-    with col2:
-        st.metric(label="Kısayol Kombinasyonu", value="120", delta="Hız %40 Artar")
-    with col3:
-        st.metric(label="Zorluk Seviyesi", value="Başlangıç-İleri", delta="Hepsi İçin")
+    m1, m2, m3 = st.columns(3)
+    with m1:
+        st.metric("Kayıtlı Fonksiyon", "480+", "Güncel")
+    with m2:
+        st.metric("İş Akış Hızı", "%65", "Verimlilik")
+    with m3:
+        st.metric("Hata Oranı", "%0.2", "Optimizasyon")
 
     st.markdown("""
-    <div class="info-card">
-        <h3>🚀 Neden Bu Rehber?</h3>
-        <p>İş hayatında en çok kullanılan araç olan Excel'i, karmaşadan uzak, sadece en önemli ve işe yarar kısımlarıyla öğrenmeniz için bu dijital rehberi hazırladık. 
-        Sol menüden istediğiniz uzmanlık alanını seçerek hemen başlayabilirsiniz.</p>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    st.subheader("🔔 Günün İpucu")
-    st.warning("**Hızlı Doldurma (Flash Fill):** Bir sütundaki veriyi (örneğin ad-soyad ayırma) bir kez manuel yapıp **CTRL + E** tuşuna basarsanız, Excel tüm listeyi sizin için otomatik tamamlar.")
-
-# 2. KISAYOLLAR
-elif choice == "⌨️ Kısayol Ansiklopedisi":
-    st.markdown("<h1>⌨️ Profesyonel Kısayollar</h1>", unsafe_allow_html=True)
-    
-    tabs = st.tabs(["🚀 En Hızlılar", "🔧 Düzenleme", "🖱️ Gezinme"])
-    
-    with tabs[0]:
-        st.markdown("""
-        <div class="info-card">
-            <b>ALT + =</b> : Otomatik Toplam (Hücreleri saniyeler içinde toplar)<br><br>
-            <b>F4</b> : Son yapılan işlemi tekrarlar veya hücreyi sabitler ($)<br><br>
-            <b>CTRL + SHIFT + L</b> : Filtreleri anında açar veya kapatır.
-        </div>
-        """, unsafe_allow_html=True)
-    
-    with tabs[1]:
-        st.table(pd.DataFrame({
-            "Kısayol": ["CTRL + T", "CTRL + ;", "ALT + Enter", "CTRL + D"],
-            "Açıklama": ["Tablo Oluştur", "Güncel Tarihi Ekle", "Hücre İçi Alt Satır", "Üstteki Hücreyi Aşağı Kopyala"]
-        }))
-
-# 3. FORMÜLLER
-elif choice == "🧪 Formüller & Mantık":
-    st.markdown("<h1>🧪 Formüller ve Fonksiyonlar</h1>", unsafe_allow_html=True)
-    
-    st.markdown("""
-    <div class="info-card">
-        <h3>📌 DÜŞEYARA (VLOOKUP)</h3>
-        <p>En çok kullanılan formüldür. Bir değeri arayıp karşılığını getirir.</p>
-        <code>=DÜŞEYARA(aranan_değer; tablo_dizisi; sütun_indis_sayısı; [aralık_bak])</code>
-    </div>
-    <div class="info-card">
-        <h3>📌 ÇAPRAZARA (XLOOKUP)</h3>
-        <p>Düşeyara'nın hatasız ve daha gelişmiş versiyonudur (Excel 365).</p>
-        <code>=ÇAPRAZARA(aranan_değer; arama_dizisi; döndürülen_dizi)</code>
+    <div class="dark-card">
+        <h3>🚀 Profesyonel Strateji</h3>
+        <p>Excel'de ustalık, sadece formül bilmek değil; veriyi nasıl yöneteceğini bilmektir. 
+        Bu rehberde, ham veriyi alıp profesyonel bir rapora dönüştürmenin tüm adımlarını bulacaksınız.</p>
     </div>
     """, unsafe_allow_html=True)
 
-# 4. VERİ ANALİZİ
-elif choice == "📉 Veri Analizi":
-    st.markdown("<h1>📉 Veri Analizi ve Görselleştirme</h1>", unsafe_allow_html=True)
+    st.subheader("💡 Altın Kural")
+    st.info("**Sabitleme ($):** Formüllerde F4 tuşu hayat kurtarır. Hücreyi kilitlemeden asla karmaşık hesaplamalara girmeyin.")
+
+# --- 2. KISAYOLLAR ---
+elif choice == "⌨️ Ninja Kısayolları":
+    st.header("⌨️ Zaman Kazandıran Profesyonel Tuşlar")
     
     col_a, col_b = st.columns(2)
     with col_a:
-        st.subheader("Pivot Tablolar")
-        st.write("Verileri saniyeler içinde özetlemek, raporlamak ve karşılaştırmak için Ekle > PivotTable yolunu kullanın.")
+        st.markdown("""
+        <div class="dark-card">
+            <h4>Seçim ve Veri Kontrolü</h4>
+            <b>CTRL + SHIFT + L</b> : Filtreleri açar/kapatır.<br>
+            <b>CTRL + T</b> : Veriyi anında tabloya dönüştürür.<br>
+            <b>CTRL + SHIFT + 1</b> : Sayıyı binlik ayırıcı yapar.
+        </div>
+        """, unsafe_allow_html=True)
+    
     with col_b:
-        st.subheader("Dilimleyiciler (Slicers)")
-        st.write("Pivot tablolarınızı ve grafiklerinizi tek tıkla filtrelemek için interaktif butonlar ekleyin.")
+        st.markdown("""
+        <div class="dark-card">
+            <h4>Hücre İçi Sihirbazlar</h4>
+            <b>ALT + =</b> : Saniyeler içinde otomatik toplam alır.<br>
+            <b>ALT + Enter</b> : Aynı hücrede alt satıra geçer.<br>
+            <b>CTRL + D</b> : Üstteki hücreyi anında aşağı kopyalar.
+        </div>
+        """, unsafe_allow_html=True)
 
-# 5. AYARLAR
-elif choice == "⚙️ Ayarlar & Püf Noktaları":
-    st.markdown("<h1>⚙️ Excel'i Özelleştirin</h1>", unsafe_allow_html=True)
-    with st.expander("Geliştirici Sekmesini Aktif Etme"):
-        st.write("Dosya > Seçenekler > Şeridi Özelleştir kısmından 'Geliştirici' kutusunu işaretleyin. Makrolar dünyasına giriş yapın!")
+# --- 3. İLERİ FORMÜL ANALİZİ ---
+elif choice == "🧪 İleri Formül Analizi":
+    st.header("🧪 Formül Mühendisliği")
+    
+    with st.expander("🔍 XLOOKUP (ÇAPRAZARA) - Yeni Nesil"):
+        st.write("Düşeyara'nın tüm eksiklerini kapatan, Excel'in en güçlü arama fonksiyonu.")
+        st.code("=ÇAPRAZARA(aranan_değer; arama_dizisi; döndürülen_dizi; [bulunamıyorsa]; [eşleştirme_modu])")
+
+    with st.expander("⚖️ İNDİS & KAÇINCI (Index-Match)"):
+        st.write("Büyük veri setlerinde Düşeyara'dan daha hızlı ve esnek çalışır.")
+        st.code("=İNDİS(Sonuç_Sütunu; KAÇINCI(Kriter; Arama_Sütunu; 0))")
+
+# --- 4. VERİ TEMİZLEME ---
+elif choice == "🧹 Veri Temizleme":
+    st.header("🧹 Veri Düzenleme Teknikleri")
+    
+    st.markdown("""
+    <div class="dark-card">
+        <h4>ETL Süreci (Extract, Transform, Load)</h4>
+        1. <b>KIRP (TRIM):</b> Gereksiz tüm boşlukları temizler.<br>
+        2. <b>TEMİZLE (CLEAN):</b> Basılamayan karakterleri yok eder.<br>
+        3. <b>YAZIM.DÜZENİ (PROPER):</b> İsimlerin baş harflerini düzeltir.
+    </div>
+    """, unsafe_allow_html=True)
+
+# --- 5. RAPORLAMA SANATI ---
+elif choice == "📊 Raporlama Sanatı":
+    st.header("📊 Dashboard ve Raporlama")
+    
+    st.markdown("""
+    <div class="dark-card">
+        <h3>Profesyonel Bir Raporun 3 Ayağı</h3>
+        <ul>
+            <li><b>Dinamiklik:</b> Pivot tablolar ve Dilimleyiciler (Slicers) kullanın.</li>
+            <li><b>Görsellik:</b> Grafiklerde karmaşadan kaçının, "Data-to-Ink" oranına dikkat edin.</li>
+            <li><b>Doğruluk:</b> 'Hata Denetimi' ve 'Veri Doğrulama' ile kullanıcı hatalarını engelleyin.</li>
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
