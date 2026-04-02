@@ -83,8 +83,8 @@ st.markdown("""
     /* SAĞ ALT KÖŞE SABİTLEME (FLOAT BUTTON STİLİ) */
     div.stSelectbox {
         position: fixed;
-        bottom: 20px;
-        right: 20px;
+        bottom: 40px;
+        right: 40px;
         width: 150px !important;
         z-index: 1000;
         background-color: #161B22;
